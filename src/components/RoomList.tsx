@@ -386,7 +386,6 @@ const RoomList: React.FC<RoomListProps> = ({
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
-                                title="Private room"
                               >
                                 <path
                                   strokeLinecap="round"
@@ -402,7 +401,6 @@ const RoomList: React.FC<RoomListProps> = ({
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
-                                title="You own this room"
                               >
                                 <path
                                   strokeLinecap="round"
