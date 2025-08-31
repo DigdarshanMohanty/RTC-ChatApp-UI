@@ -90,7 +90,7 @@ export default function Register() {
                 </div>
                 <input
                   type="text"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm text-gray-900 placeholder-gray-500"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 bg-white/50 text-gray-900 placeholder-gray-500"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="Choose a username (min 3 characters)"
@@ -127,7 +127,7 @@ export default function Register() {
                 </div>
                 <input
                   type="password"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm text-gray-900 placeholder-gray-500"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 bg-white/50 text-gray-900 placeholder-gray-500"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Choose a password (min 6 characters)"

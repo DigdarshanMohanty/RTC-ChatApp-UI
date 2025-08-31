@@ -46,7 +46,7 @@ const Chat: React.FC = () => {
             </div>
             <div>
               <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Chat App
+                FlowChat
               </h1>
               <p className="text-sm text-gray-500">Real-time messaging</p>
             </div>
@@ -94,6 +94,7 @@ const Chat: React.FC = () => {
             onSelect={setActiveRoom}
             token={token}
             activeRoomId={activeRoom}
+            currentUserId={user?.id}
           />
         </div>
 

@@ -6,7 +6,7 @@ const Home: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-50 flex flex-col">
       {/* Navigation Header */}
       <nav className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-white/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
@@ -26,23 +26,23 @@ const Home: React.FC = () => {
               </div>
               <div>
                 <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  ChatApp
+                  FlowChat
                 </h1>
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <Link
+              {/*<Link
                 to="/login"
                 className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
               >
                 Sign In
-              </Link>
-              <Link
+              </Link>*/}
+              {/*<Link
                 to="/register"
                 className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-xl font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
               >
                 Get Started
-              </Link>
+              </Link>*/}
             </div>
           </div>
         </div>
@@ -188,7 +188,7 @@ const Home: React.FC = () => {
                 </div>
                 <div className="bg-gray-100 rounded-2xl px-4 py-2 max-w-xs">
                   <p className="text-sm text-gray-800">
-                    Welcome to our chat app! 👋
+                    Welcome to our chat app!
                   </p>
                 </div>
               </div>
@@ -196,7 +196,7 @@ const Home: React.FC = () => {
               <div className="flex items-start space-x-3 justify-end">
                 <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl px-4 py-2 max-w-xs">
                   <p className="text-sm text-white">
-                    This looks amazing! Can't wait to try it 🚀
+                    This looks amazing, Can't wait to try it!
                   </p>
                 </div>
                 <div className="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
@@ -264,7 +264,7 @@ const Home: React.FC = () => {
                 </svg>
               </div>
               <span className="text-gray-600 font-medium">
-                © 2024 ChatApp. Connect with confidence.
+                © 2025 FlowChat. Connect with confidence.
               </span>
             </div>
             <div className="flex items-center space-x-6">

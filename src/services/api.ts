@@ -8,6 +8,9 @@ interface Room {
   id: number;
   name: string;
   created_at: string;
+  is_private: boolean;
+  invite_code?: string;
+  created_by: number;
 }
 
 interface Message {
@@ -144,11 +147,14 @@ export const register = (username: string, password: string) =>
 // Chat room endpoints
 export const getRooms = (token: string) => api.get<Room[]>("/api/rooms", token);
 
-export const createRoom = (name: string, token: string) =>
-  api.post<Room>("/api/rooms/create", { name }, token);
+export const createRoom = (name: string, isPrivate: boolean, token: string) =>
+  api.post<Room>("/api/rooms/create", { name, is_private: isPrivate }, token);
 
 export const deleteRoom = (roomId: number, token: string) =>
   api.delete<{ message: string }>(`/api/rooms/delete?id=${roomId}`, token);
+
+export const joinRoomByInvite = (inviteCode: string, token: string) =>
+  api.post<Room>("/api/rooms/join", { invite_code: inviteCode }, token);
 
 // Message endpoints
 export const getMessages = (
