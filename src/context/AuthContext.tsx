@@ -21,7 +21,10 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 );
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(() => {
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token"),
   );
@@ -34,8 +37,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(response.user);
       setToken(response.token);
       localStorage.setItem("token", response.token);
-    } catch (error: any) {
-      throw new Error(error.message || "Login failed");
+      localStorage.setItem("user", JSON.stringify(response.user));
+    } catch (error) {
+      throw new Error((error as Error).message || "Login failed");
     } finally {
       setIsLoading(false);
     }
@@ -48,8 +52,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(response.user);
       setToken(response.token);
       localStorage.setItem("token", response.token);
-    } catch (error: any) {
-      throw new Error(error.message || "Registration failed");
+      localStorage.setItem("user", JSON.stringify(response.user));
+    } catch (error) {
+      throw new Error((error as Error).message || "Registration failed");
     } finally {
       setIsLoading(false);
     }
@@ -59,6 +64,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     setToken(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
 
   return (

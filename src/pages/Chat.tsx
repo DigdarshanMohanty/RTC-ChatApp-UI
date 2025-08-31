@@ -24,7 +24,7 @@ const Chat: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-gray-100">
       {/* Top Navigation Bar */}
       <div className="bg-white/80 backdrop-blur-sm border-b border-white/20 shadow-sm">
         <div className="px-6 py-4 flex items-center justify-between">
@@ -89,30 +89,18 @@ const Chat: React.FC = () => {
       {/* Main Chat Layout */}
       <div className="flex h-[calc(100vh-88px)]">
         {/* Sidebar - Room List */}
-        <div className="w-80 bg-white/60 backdrop-blur-sm border-r border-white/20 shadow-sm">
-          <RoomList onSelect={setActiveRoom} token={token} />
+        <div className="flex-shrink-0">
+          <RoomList
+            onSelect={setActiveRoom}
+            token={token}
+            activeRoomId={activeRoom}
+          />
         </div>
 
         {/* Main Chat Area */}
-        <div className="flex-1 flex flex-col">
-          {/* Room Header */}
-          <div className="bg-white/80 backdrop-blur-sm border-b border-white/20 px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-lg font-semibold text-gray-800">
-                  Chat Room
-                </h2>
-                <p className="text-sm text-gray-500">Room ID: {activeRoom}</p>
-              </div>
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-sm text-green-600 font-medium">Live</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Chat Window */}
-          <div className="flex-1">
+        <div className="flex-1 flex flex-col min-h-0">
+          {/* Chat Window with fixed height */}
+          <div className="flex-1 min-h-0">
             <ChatWindow roomId={activeRoom.toString()} token={token} />
           </div>
         </div>

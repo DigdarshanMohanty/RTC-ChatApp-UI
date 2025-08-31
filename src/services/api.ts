@@ -1,3 +1,24 @@
+interface User {
+  id: number;
+  username: string;
+  created_at: string;
+}
+
+interface Room {
+  id: number;
+  name: string;
+  created_at: string;
+}
+
+interface Message {
+  id: number;
+  room_id: number;
+  sender_id: number;
+  username: string;
+  content: string;
+  created_at: string;
+}
+
 const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:8081";
 
 // Debug logging for deployment
@@ -38,7 +59,7 @@ const api = {
     return data.data;
   },
 
-  post: async <T>(path: string, body: any, token?: string): Promise<T> => {
+  post: async <T>(path: string, body: unknown, token?: string): Promise<T> => {
     const fullUrl = API_BASE + path;
     console.log("Making POST request to:", fullUrl, "with body:", body);
 
@@ -83,32 +104,58 @@ const api = {
     const data: ApiResponse<T> = await response.json();
     return data.data;
   },
+
+  delete: async <T>(path: string, token?: string): Promise<T> => {
+    const fullUrl = API_BASE + path;
+    console.log("Making DELETE request to:", fullUrl);
+
+    const response = await fetch(fullUrl, {
+      method: "DELETE",
+      headers: token ? { Authorization: token } : {},
+    });
+
+    if (!response.ok) {
+      const errorData: ErrorResponse = await response.json();
+      throw new Error(
+        errorData.message || `HTTP error! status: ${response.status}`,
+      );
+    }
+
+    const data: ApiResponse<T> = await response.json();
+    return data.data;
+  },
 };
 
 export default api;
 
 // Auth endpoints
 export const login = (username: string, password: string) =>
-  api.post<{ token: string; user: any }>("/api/login", { username, password });
+  api.post<{ token: string; user: User }>("/api/login", {
+    username,
+    password,
+  });
 
 export const register = (username: string, password: string) =>
-  api.post<{ token: string; user: any }>("/api/register", {
+  api.post<{ token: string; user: User }>("/api/register", {
     username,
     password,
   });
 
 // Chat room endpoints
-export const getRooms = (token: string) => api.get<any[]>("/api/rooms", token);
+export const getRooms = (token: string) => api.get<Room[]>("/api/rooms", token);
 
 export const createRoom = (name: string, token: string) =>
-  api.post<any>("/api/rooms/create", { name }, token);
+  api.post<Room>("/api/rooms/create", { name }, token);
+
+export const deleteRoom = (roomId: number, token: string) =>
+  api.delete<{ message: string }>(`/api/rooms/delete?id=${roomId}`, token);
 
 // Message endpoints
 export const getMessages = (
   roomId: string,
   limit: number = 50,
   token: string,
-) => api.get<any[]>(`/api/messages?roomId=${roomId}&limit=${limit}`, token);
+) => api.get<Message[]>(`/api/messages?roomId=${roomId}&limit=${limit}`, token);
 
 // WebSocket URL
 export const getWebSocketUrl = (roomId: string) => {
